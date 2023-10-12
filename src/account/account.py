@@ -50,11 +50,11 @@ class account(transaction):
                 raise ValueError('Debit amount is greater than the balance.')
         except ValueError as e:
             exit(e)
-        finally:
+        else:
             self._balance = self._balance - amount
     
     def __str__(self):
-        return f"account balance= {self._balance}"
+        return f"account balance= {self._balance} public= {self.public}"
     
     def __eq__(self, other):
         if other is not None:
@@ -71,5 +71,31 @@ class account(transaction):
     def sum(account1, account2):
         if(account1 is None or account2 is None):
             return 0.0
+        # if parameter type is not account: return 0.0 
+        elif (not isinstance(account1, account) or not isinstance(account2, account)):
+            return 0.0
         else:
             return account1._balance + account2._balance
+        
+    # static methods can be called without making an instance of the class 
+
+    @staticmethod
+    def transfer(a, amount: float):
+        try:
+            if (amount < 0.0):
+                raise ValueError("Debit amount is less than zero")
+            elif (a is None):
+                # if no account in parameter: 
+                raise ValueError("Account is None.")
+                # if parameter is not account type: 
+            elif (not isinstance(a, account)):
+                raise ValueError("a is not an account type")
+                # cannot use greater amount then what is in the balance: 
+            elif (amount > a.getBalance()):
+                raise ValueError("Debit amount is greater than the balance in the specified account.")
+        except ValueError as e:
+            exit(e)
+        else:
+            a.debit(amount)
+            newAccount = account(amount)
+            return newAccount

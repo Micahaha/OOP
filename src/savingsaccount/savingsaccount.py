@@ -17,7 +17,7 @@ class savingsaccount(account):
         return self.__interestRate
     
     def getInterest(self):
-        return self.__balance * self.__interestRate
+        return self._balance * self.__interestRate
     
     # overriding credit method from account class to be multipled by interest rate
 
@@ -28,3 +28,14 @@ class savingsaccount(account):
     
     def __str__(self):
         return f"Savings account balance= {self._balance} InterestRate={self.__interestRate}"
+
+    def __eq__(self, other):
+            if other is not None:
+                # check if other is an account type
+                if isinstance(other, savingsaccount):
+                    # check if other's balance is equal to the balance and the interest rate are the same
+                    # of the calling object
+                    if (other._balance == self._balance) and (other.__interestRate == self.__interestRate):
+                        return True
+                
+            return False

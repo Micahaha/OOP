@@ -10,14 +10,16 @@ class savingsaccount(account):
         super().__init__(balance)
         self.__interestRate = interestRate
     
-    def setInterestRate(self, interestRate: float):
+
+    
+    def setInterestRate(self, interestRate: float):        
         self.__interestRate = interestRate
 
     def getInterestRate(self):
         return self.__interestRate
     
     def getInterest(self):
-        return self._balance * self.__interestRate
+        return self.getBalance() * self.__interestRate
     
     # overriding credit method from account class to be multipled by interest rate
 
@@ -30,12 +32,19 @@ class savingsaccount(account):
         return f"Savings account balance= {self._balance} InterestRate={self.__interestRate}"
 
     def __eq__(self, other):
-            if other is not None:
+        """Compare the two objects to see if they're the same
+
+        Args:
+            other (savingsaccount): The savings account object to compare to
+
+        Returns:
+            boolean: Returns true if the objects are the same 
+        """            
+        if other is not None:
                 # check if other is an account type
                 if isinstance(other, savingsaccount):
                     # check if other's balance is equal to the balance and the interest rate are the same
                     # of the calling object
-                    if (other._balance == self._balance) and (other.__interestRate == self.__interestRate):
-                        return True
+                    return (other.getBalance() == self.getBalance()) and (other.getInterestRate() == self.getInterestRate())
                 
-            return False
+        return False

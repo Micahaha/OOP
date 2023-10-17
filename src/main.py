@@ -91,7 +91,8 @@ def main():
     # a4 = account.transfer(a1, 25.0) this line of code results in ValueError
     # a4 = account.transfer(a1, 2500.0) this line of code results in ValueError
     # a4 = account.transfer(a3, 25.0)
-    a4 = account.transfer(s1, 25.0)
+    a4 = account.transfer(a2, 25.0)
+    # a4 = account.transfer(s1, 25.0)
 
     # display the balances in a1 and a4
     print("Balance in a1 $%.2f" % (a1.getBalance()))
@@ -112,26 +113,26 @@ def main():
     print(f'Is balance of sa1 empty:',sa1.isEmpty())
 
     # display a string representation of sa1
-    print(sa1)
+    print(f'sa1:',sa1)
 
     # display the result of testing if sa1 is equal to a1
-    print(a1.__eq__(sa1))
+    print("Is sa1 equal to a1?", sa1.__eq__(a1))
 
     # display the result of the testing if sa1 is equal to a3
-    print(a3.__eq__(sa1))
+    print("Is sa1 equal to a3?",sa1.__eq__(a3))
 
     # create a savings account object named sa2 and initialize its balance 
     # to $10000 and its interest rate to 5%
     sa2 = savingsaccount(10000, .05)
 
     # display the result of sa1 is equal to sa2
-    sa1.__eq__(sa2)
+    print("Is sa1 equal to sa2?",sa1.__eq__(sa2))
 
-    # change th einterewst rate of sa2 to 6%
+    # change the interest rate of sa2 to 6%
     sa2.setInterestRate = .06
 
     # display the result of testing if sa1 is equal to sa2
-    sa1.__eq__(sa2)
+    print("Is sa1 equal to sa2?",sa1.__eq__(sa2))
 
     # credit sa2 by $1000
     sa2.credit(1000)

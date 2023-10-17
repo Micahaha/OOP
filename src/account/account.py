@@ -3,6 +3,10 @@ from sys import exit
 
 class account(transaction):
     def __init__(self, *args):
+        """Constructs a savings account with a specified balance and interest rate.
+
+        :ivar __balance: balance of this savingsaccount
+        """       
         if(len(args) == 1):
             try:
                 if(args[0] < 0.0):
